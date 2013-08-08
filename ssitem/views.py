@@ -82,8 +82,7 @@ def shiseview(request, sid, form_class=QcommentForm, template_name="shise/item.h
 		if not request.is_ajax():
 			#处理添加评论请求
 			form = form_class(request.POST)
-			#successurl = '%s#img failed' %(item.get_absolute_url())
-			#return HttpResponseRedirect(successurl)
+			return HttpResponseRedirect(successurl)
 			if form.is_valid():
 				content = form.cleaned_data.get("content",'')
 				try:

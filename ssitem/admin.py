@@ -14,4 +14,3 @@ class ShiseAdmin(admin.ModelAdmin):
 	}
 
 admin.site.register(Shise, ShiseAdmin)
-

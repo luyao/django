@@ -32,7 +32,7 @@ class Shise(models.Model):
 	logo300 	= models.ImageField('logo大图',	upload_to='shiselogo', 	blank=True)
 	logo110 	= models.ImageField('logo小图',	upload_to='shiselogo', 	blank=True)
 	logo300_url = models.CharField(max_length=60, verbose_name='300url',blank=True)
-	logo110_url = models.CharField(max_length=60, verbose_name='100url',blank=True)
+	logo110_url = models.CharField(max_length=60, verbose_name='300url',blank=True)
 
 	#创建者
 	author 		= models.ForeignKey(User, related_name='shise_author_set', verbose_name='创建者')
