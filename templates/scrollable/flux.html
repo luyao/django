@@ -1,0 +1,34 @@
+<!--[if lte IE 8]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!-- Use jQuery for best compatibility with other CSS3 enabled browsers -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/flux.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+	$(function(){
+		if(!flux.browser.supportsTransitions)
+			alert("Flux Slider requires a browser that supports CSS3 transitions");
+			
+		window.f = new flux.slider('#slider', {
+			pagination: true,
+			controls: true,
+			transitions: [ 'cube'],
+			//transitions: ['explode', 'tiles3d', 'bars3d', 'cube', 'turn'],
+			autoplay:true 
+		});
+		
+		$('.transitions').click(function(event){
+			event.preventDefault();
+			window.f.next($(event.target).data('transition'), $(event.target).data('params'));
+		});
+	});
+</script>
+<section id="flux_container" class="width1080">
+	<div class="width960">
+	<div id="slider" style="margin-left:70px;">
+		<img src="/static/img/dior4_800_350.png" alt="" />
+		<img src="/static/img/dior3_800_350.png" alt="" />
+		<img src="/static/img/dior1_800_350.png" alt="" />
+	</div>
+	</div>
+</section>

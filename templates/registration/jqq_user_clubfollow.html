@@ -1,0 +1,55 @@
+{% extends "registration/jqq_user_base.html" %}
+
+{% block jqq-user-clubfollow %}
+<div class="jbox-xxx jbox-white">
+<h3>关注的球队 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp; </h3>
+<ul>
+	{% for i in profile.get_clubs_followed %}
+	<li class="logoli"><a href="{{i.get_absolute_url}}"><img src="{{i.logo.url}}"></a>
+	<p><a class="vi-link" href="{{i.get_absolute_url}}">{{i.name}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+<div class="clearfloat"></div>
+</div>
+
+<div class="jbox-xxx jbox-white">
+<h3>参加的球队 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp; </h3>
+<ul>
+	{% for i in profile.get_clubs_membered %}
+	<li class="logoli"><a href="{{i.get_absolute_url}}"><img src="{{i.logo.url}}"></a>
+	<p><a class="vi-link" href="{{i.get_absolute_url}}">{{i.name}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+<div class="clearfloat"></div>
+</div>
+
+<div class="jbox-xxx jbox-white">
+<h3>管理的球队 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp; </h3>
+<ul>
+	{% for i in profile.get_clubs_managed %}
+	<li class="logoli"><a href="{{i.get_absolute_url}}"><img src="{{i.logo.url}}"></a>
+	<p><a class="vi-link" href="{{i.get_absolute_url}}">{{i.name}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+<div class="clearfloat"></div>
+</div>
+
+<div class="jbox-xxx jbox-white">
+<h3>创建的球队 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp; </h3>
+<ul>
+	{% for i in profile.get_clubs_created %}
+	<li class="logoli"><a href="{{i.get_absolute_url}}"><img src="{{i.logo.url}}"></a>
+	<p><a class="vi-link" href="{{i.get_absolute_url}}">{{i.name}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+<div class="clearfloat"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+<link href="/static/css/scrollable.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/mbScrollable.js"></script>
+<script type="text/javascript" src="/static/js/backTop.js"></script>
+<script type="text/javascript">
+  $(function(){
+	$('.cate_nav').hover(function(){$(this).find('ul').stop(true,true).slideDown();},
+		function(){$(this).find('ul').stop(true,true).slideUp('fast');
+		});
+
+
+	/*this part is used to get the page height, but seems no use?*/
+	window.onload = position;
+	window.onresize = position;
+	function position(){
+		var bottomdiv = document.getElementById("header");
+		var ch,cw,bottomwidth,bottomheight;
+		ch = document.body.clientheight;
+		//cw = document.body.clientwidth;
+		//bottomwidth = bottomdiv.offsetwidth;
+		bottomheight = bottomdiv.offsetheight;
+		with(bottomdiv){
+			style.top=(ch - bottomheight)+"px";
+			//style.left=(cw - bottomwidth)+"px";
+			style.visibility = "visible";
+		}
+	};
+
+	var $backToTopEle = $('<a class="back_to_top"></a>').appendTo($("body")).click(function() {
+				$("html, body").animate({ scrollTop: 0 }, 120);
+				}), 
+		$backToTopFun = function() {
+			var st = $(document).scrollTop(), winh = $(window).height();
+			(st > 0)? $backToTopEle.show(): $backToTopEle.hide();    
+			//IE6下的定位
+			if (!window.XMLHttpRequest) {
+				$backToTopEle.css("top", st + winh - 166);    
+			}
+		};
+	$(window).bind("scroll", $backToTopFun);
+	$(function() { $backToTopFun(); });
+    setTimeout(function(){$("#wrapper").fadeIn();},2000);
+  });
+
+</script>
+

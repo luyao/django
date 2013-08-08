@@ -1,0 +1,17 @@
+<!--单条评论-->
+<div class="qcomment-item" id="{{qcomment.id}}">
+	<div class="user-face">
+	<a href="{{qcomment.get_author_url}}"><img src="{{qcomment.get_authorlogo_url}}"/></a>
+	</div>
+
+	<div class="qcomment">
+	<p class="headerp">
+	<span class="c-username">{{qcomment.author.username}}</span> &nbsp;&nbsp;&nbsp;
+	<span class="c-date">{{qcomment.submit_date|date:"Y-m-d H:i"}}</span> &nbsp;&nbsp;&nbsp; 
+	<a class="vi-link qcomment-highlight" href="javascript:;" rel="nofollow" id="a-{{qcomment.id}}">点亮（{{qcomment.lights}}）</a> &nbsp;&nbsp;
+	<a class="vi-link qcomment-reply" href="javascript:;" rel="nofollow" id="ar-{{qcomment.id}}">回复</a> &nbsp;&nbsp;
+	</p>
+	{% if qcomment.has_quote %} <blockquote> {{qcomment.quote|linebreaksbr}} </blockquote><br/> {% endif %}
+	<p> {{qcomment.comment|safe|linebreaksbr}} </p>
+	</div>
+</div>

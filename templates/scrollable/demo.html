@@ -1,0 +1,65 @@
+{% extends 'base.html'%}
+
+{% block title %} 
+  <title>scrollable test</title>
+{% endblock title %}
+
+{% block source%}
+  <link href="/static/css/scrollable.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/mbScrollable.js"></script>
+  <script type="text/javascript">
+	  /*<!--TODO: this part need to fixup -->*/
+    $(function(){
+      $("#myScroll").mbScrollable({
+        width:700,
+        elementsInPage:1,
+        elementMargin:2,
+        shadow:"#999 2px 2px 2px",
+        height:"auto",
+        controls:"#controls",
+        slideTimer:600,
+        autoscroll:true,
+        scrollTimer:2000,
+				changePageCallback:function(){
+					var positiondisplay= $('#myScroll').get(0).idx+'/'+$('#myScroll').get(0).totalPages;
+					$('#controls .positiondisplay').html(positiondisplay);
+				},
+				loadCallback:function(){
+					var positiondisplay= $('#myScroll').get(0).idx+'/'+$('#myScroll').get(0).totalPages;
+					$('#controls .positiondisplay').html(positiondisplay);
+				}
+      });
+      setTimeout(function(){$("#wrapper").fadeIn();},2000);
+    });
+  </script>
+{% endblock source %}
+
+{% block content %}
+<div id="wrapper">
+  <div id="horizontal">
+    <div id="myScroll">
+	{% block scroll_imgs %}
+      <div class="scrollEl" style="background-color:#9999ff">1</div>
+      <div class="scrollEl" style="background-color:#cc9900">2</div>
+      <div class="scrollEl" style="background-color:#660066">3</div>
+      <div class="scrollEl" style="background-color:#009966">4</div>
+    </div>
+	{% endblock %}
+
+    <div id="controls">
+      <div class="prev">prev</div>
+      <div class="next">next</div>
+	  <!--
+      <div class="pageIndex"></div>
+      <div class="positiondisplay">AAA</div>
+      <div class="start">start</div><div class="stop">stop</div>
+      <div class="goto" onclick="$('#myScroll').goToPage($('#pg').val());">go to page <input id="pg" style="width:20px; border:1px solid gray" value="1"></div>
+	  <div class="getIDX" onclick="alert($('#myScroll').get(0).idx);">getIDX</div>
+	  -->
+    </div>
+
+    <br>
+    <br>
+</div>
+{% endblock content %}

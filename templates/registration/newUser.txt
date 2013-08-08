@@ -1,0 +1,12 @@
+{{rp.user.username}}，角旗区欢迎您:)
+
+【您的基本信息】
+用户名：{{rp.user.username}}
+邮箱：{{rp.user.email}}
+
+【您在角旗区的主页】
+http://www.jiaoqiqu.com{{rp.get_absolute_url}}
+
+请登录角旗区，到自己的主页写上一段自我介绍，上传一张漂漂logo吧:)
+
+-角旗区-

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}
+<title>角旗区查收确认信</title>
+{% endblock %}
+<style type="text/css">
+.accemail{margin:0; padding:8px}
+</style>
+{% block content %}
+<div class="width960">
+<h1>查收确认信</h1>
+<div class="clearfloat"></div>
+<div class="accemail">
+<p style="font-size:16px; margin-top:20px 0 50px; line-height:30px">确认信已发送到你的注册邮箱，{{emailaddress}}
+<br/>
+请点击邮件中的确认链接来激活你的帐号<br/><br/><br/>
+</p>
+<p style="font-size:14px; margin-top:20px 0 50px; line-height:24px">没有收到确认信怎么办？<br/><br/>
+1、检查一下上面的email地址是否正确，错了就重新注册一次吧：）<br/>
+2、看看确认信是否在邮箱的垃圾箱里<br/>
+3、稍等几分钟，若仍旧没收到确认信，点击： <a class="vi-link" href="/accounts/reemail/{{emailaddress}}/">重发一封</a><br/>
+</p>
+</div>
+</div>
+{% endblock %}
+
+

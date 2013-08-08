@@ -1,0 +1,12 @@
+<!-- 新闻、球评、话题 作者信息卡 -->
+<div class="author-intro">
+	<div class="user-face">
+		<a class="vi-link" href="{{author.get_profile.get_absolute_url}}" target="_blank"><img src="{{author.get_profile.logo.url}}"/></a>
+	</div>
+
+	<div class="user-name">
+		<p class="usernamep"><a class="vi-link" href="{{author.get_profile.get_absolute_url}}" target="_blank">{{author.username}}</a></p>
+		<p class="userintrop">{{author.get_profile.intro}}</p>
+	</div>
+	<div class="clearfloat"></div>
+</div>

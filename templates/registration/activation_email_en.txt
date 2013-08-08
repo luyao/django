@@ -1,0 +1,12 @@
+Hey：
+
+You recently entered a new contact email address into Jiaoqiqu.
+
+To confirm your contact email, follow the link below in {{expiration_days}} days:
+
+http://www.jiaoqiqu.com/accounts/key/{{activation_key}}/
+
+Cheers,
+The Jiaoqiqu Team.
+
+www.jiaoqiqu.com

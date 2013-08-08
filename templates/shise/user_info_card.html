@@ -1,0 +1,29 @@
+{%block user_info_card%}
+<div class="user_info_card beautiful_div_block fr">
+	<div class="title">
+		<h1>贡献榜</h1>
+	</div>
+	<div class="user_info">
+		<div class="title">
+			<h2>创建者</h2>
+		</div>
+		<div class="user_info fl ml20">
+			<a href='{{creator.get_profile.get_absolute_url}}'>
+			{%if creator.get_profile.get_logo_url%}
+			<img src="/static/img/{{creator.get_profile.logo.url}}">
+			{%else%}
+			<img src="/static/img/girl_avatar_default.jpg_64x64.jpg">
+			{%endif%}
+			</a>
+		</div>
+		<div class="fl" style="margin-left:10px;text-align:left;">
+			<p class="user_name">{{creator.username}}</p>
+			{% if creator.get_profile.qcomments.len%}
+			<p class="user_contribute">贡献了: {{creator.get_profile.qcomments.len}}次</p>
+			{%else%}
+			<p class="user_contribute">贡献了: 1次</p>
+			{%endif%}
+		</div>
+	</div>
+</div>
+{%endblock%}

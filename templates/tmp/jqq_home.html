@@ -1,0 +1,344 @@
+{% extends "jqq_base.html" %}
+{% block jqq-keywords %}<meta name="keywords" content="足球比赛、球评、比赛图片、校园联赛、角旗区">{% endblock %}
+{% block jqq-description %}<meta name="description" content="角旗区相信每场足球比赛都如电影般跌宕起伏扣人心弦，角旗区提供足球爱好者一个关于足球比赛的观看、记录、讨论和分享的平台。">{% endblock %}
+{% block jqq-title %}<title>角旗区</title>{% endblock %}
+{% block jqq-style %}
+<style type="text/css">
+.home-comp{margin:2px; padding:4px; border-bottom:1px solid #dedede;}
+.match-club-logo{float:left; padding:8px; width:140px;}
+.match-logo{width:140px; height:170px; border:1px solid white; margin-bottom:20px;}
+.match-logo:hover{border:1px solid #005eac;}
+.match-news{float:right; padding:0; margin:0; width:416px; min-height:150px;}
+.match-news li{padding:4px;}
+.match-news span.news-title{min-width:318px; display:inline-block; font-size:12px; line-height:21px;}
+.match-news span.news-date{display:inline-block; font-size:12px; line-height:21px;}
+
+#home-create{margin:20px 0; padding:16px;}
+#home-create p{text-align:center; padding-bottom:10px}
+#home-create-button{margin-left:auto; margin-right:auto; margin-top:10px; width:100px}
+#home-create-button a{background:#005eac; padding:8px 6px; border:none; font-size:15px; color:white; cursor:pointer;}
+#home-create-button a:hover{background:#750021}
+
+ul.reviewul li{margin:0; padding:12px 8px; border-bottom:1px dotted #dedede;}
+</style>
+{% endblock %}
+
+<!-- 左边主要内容 -->
+{% block jqq-main %}
+
+<!-- 西甲新闻区 -->
+<div id="home-xijia" class="home-comp">
+<h3>西甲 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+	<a class="vi-link" href="/competition/1/" target="_blank">更多</a>
+</h3>
+
+<div class="match-club-logo">
+<!-- 左侧比赛logo-->
+<div class="match-logo">
+	<a target="_blank" href="{{xijia_match.get_absolute_url}}"><img class="mlogo" src="{{xijia_match.logo.url}}"/></a>
+</div>
+
+<!-- 左侧球队logo-->
+<ul class="logoul">
+	{% for club in xijiaclublist %}
+	<li><a href="{{club.get_absolute_url}}"><img class="clogo" src="{{club.logo.url}}"></a>
+	<p class="logop"><a class="vi-link" href="{{club.get_absolute_url}}">{{club.nameshort}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+</div>
+
+<!-- 右侧新闻列表-->
+<div class="match-news">
+	<ul class="newsul">
+		{% for n in xijia_news %}
+		<li>
+		<span class="news-title"><a target="_blank" class="black-red-link" href="{{n.get_absolute_url}}">{{n.title}}</a></span>
+		<span class="news-date cgray">{{n.create|date:"m-d H:i"}}</span>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+<div class="clearfloat"></div>
+</div>
+
+<!-- 英超新闻区 -->
+<div id="home-yingchao" class="home-comp">
+<h3>英超 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+	<a class="vi-link" href="/competition/2/" target="_blank">更多</a>
+</h3>
+
+<div class="match-club-logo">
+<!-- 左侧比赛logo-->
+<div class="match-logo">
+	<a target="_blank" href="{{yingchao_match.get_absolute_url}}"><img class="mlogo" src="{{yingchao_match.logo.url}}"/></a>
+</div>
+
+<!-- 左侧球队logo-->
+<ul class="logoul">
+	{% for club in yingchaoclublist %}
+	<li><a href="{{club.get_absolute_url}}"><img class="clogo" src="{{club.logo.url}}"></a>
+	<p class="logop"><a class="vi-link" href="{{club.get_absolute_url}}">{{club.nameshort}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+</div>
+
+<!-- 右侧新闻列表-->
+<div class="match-news">
+	<ul>
+		{% for n in yingchao_news %}
+		<li>
+		<span class="news-title"><a target="_blank" class="black-red-link" href="{{n.get_absolute_url}}">{{n.title}}</a></span>
+		<span class="news-date cgray">{{n.create|date:"m-d H:i"}}</span>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+<div class="clearfloat"></div>
+</div>
+
+<!-- 德甲新闻区 -->
+<div id="home-dejia" class="home-comp">
+<h3>德甲 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+	<a class="vi-link" href="/competition/3/" target="_blank">更多</a>
+</h3>
+
+<div class="match-club-logo">
+<!-- 左侧比赛图片-->
+<div class="match-logo">
+	<a target="_blank" href="{{dejia_match.get_absolute_url}}"><img class="mlogo" src="{{dejia_match.logo.url}}"/></a>
+</div>
+
+<!-- 左侧球队logo-->
+<ul class="logoul">
+	{% for club in dejiaclublist %}
+	<li><a href="{{club.get_absolute_url}}"><img class="clogo" src="{{club.logo.url}}"></a>
+	<p class="logop"><a class="vi-link" href="{{club.get_absolute_url}}">{{club.nameshort}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+</div>
+
+<!-- 右侧新闻列表-->
+<div class="match-news">
+	<ul>
+		{% for n in dejia_news %}
+		<li>
+		<span class="news-title"><a target="_blank" class="black-red-link" href="{{n.get_absolute_url}}">{{n.title}}</a></span>
+		<span class="news-date cgray">{{n.create|date:"m-d H:i"}}</span>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+<div class="clearfloat"></div>
+</div>
+
+<!-- 意甲新闻区 -->
+<div id="home-yijia" class="home-comp">
+<h3>意甲 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+	<a class="vi-link" href="/competition/4/" target="_blank">更多</a>
+</h3>
+
+<div class="match-club-logo">
+<!-- 左侧比赛图片-->
+<div class="match-logo">
+	<a target="_blank" href="{{yijia_match.get_absolute_url}}"><img class="mlogo" src="{{yijia_match.logo.url}}"/></a>
+</div>
+
+<!-- 左侧球队logo-->
+<ul class="logoul">
+	{% for club in yijiaclublist %}
+	<li><a href="{{club.get_absolute_url}}"><img class="clogo" src="{{club.logo.url}}"></a>
+	<p class="logop"><a class="vi-link" href="{{club.get_absolute_url}}">{{club.nameshort}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+</div>
+
+<!-- 右侧新闻列表-->
+<div class="match-news">
+	<ul>
+		{% for n in yijia_news %}
+		<li>
+		<span class="news-title"><a target="_blank" class="black-red-link" href="{{n.get_absolute_url}}">{{n.title}}</a></span>
+		<span class="news-date cgray">{{n.create|date:"m-d H:i"}}</span>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+<div class="clearfloat"></div>
+</div>
+
+<!-- 欧冠新闻区 -->
+<div id="home-ouguan" class="home-comp">
+<h3>欧冠 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+	<a class="vi-link" href="/competition/8/" target="_blank">更多</a>
+</h3>
+
+<div class="match-club-logo">
+<!-- 左侧比赛图片-->
+<div class="match-logo">
+	<a target="_blank" href="{{ouguan_match.get_absolute_url}}"><img class="mlogo" src="{{ouguan_match.logo.url}}"/></a>
+</div>
+
+<!-- 左侧球队logo-->
+<ul class="logoul">
+	{% for club in ouguanclublist %}
+	<li><a href="{{club.get_absolute_url}}"><img class="clogo" src="{{club.logo.url}}"></a>
+	<p class="logop"><a class="vi-link" href="{{club.get_absolute_url}}">{{club.nameshort}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+</div>
+
+<!-- 右侧新闻列表-->
+<div class="match-news">
+	<ul>
+		{% for n in ouguan_news %}
+		<li>
+		<span class="news-title"><a target="_blank" class="black-red-link" href="{{n.get_absolute_url}}">{{n.title}}</a></span>
+		<span class="news-date cgray">{{n.create|date:"m-d H:i"}}</span>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+	<div class="clearfloat"></div>
+</div>
+
+{% endblock %}
+
+<!-- 侧边栏看这里 -->
+{% block jqq-side %}
+
+<!-- 创建比赛，点我 -->
+<div id="home-create" class="jbox-gray">
+	<p>角旗区，记录最纯粹的足球。这里已有</p>
+	<p>
+	<a class="vi-link" href="/match/all/" >{{matchcount}}</a> 场比赛，
+	<a class="vi-link" href="/club/all/"  >{{clubcount}}</a> 支球队，
+	<a class="vi-link" href="/player/all/">{{playercount}}</a> 位球员</p>
+
+	<!--
+	<div id="home-create-button">
+		<a href="/matchcreate/" target="_blank">+ 创建比赛</a>
+	</div>
+	-->
+</div>
+
+<!-- 10条最流行的比赛列表 
+<div id="home-lovelist">
+<h3>这些角旗杆比较流行 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp; 
+	<a class="vi-link" href="/matchlist/">全部 </a>
+</h3>
+<div>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="">精彩比赛单</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="">珍藏比赛</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="">梅西的帽子戏法</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="">近20年20大米兰德比</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="">英超连环劫</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="">2008欧洲杯西班牙之旅</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="">魔蜜必看经典比赛</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="">那些年，我们一起追的经典比赛</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="">02世界杯巴西封神路</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="">巴阿大战系列</a></p>
+</div>
+</div>
+-->
+
+<!-- 移动app -->
+<!--
+<div id="home-app" class="jbox-white">
+<h3>角旗区移动版 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;</h3>
+<div>
+	<p>
+	&nbsp;&nbsp;&nbsp; 亲，将比赛随身携带</br>
+	&nbsp;&nbsp;&nbsp; 支持Symbian、iPhone、Android 等各种系统</br>
+	&nbsp;&nbsp;&nbsp; 角旗区，就在你身边</br>
+	</p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="/app/">去下载</a></p>
+</div>
+</div>
+-->
+
+
+
+<!-- 比赛前瞻区 -->
+<!--
+<div id="home-previews" class="jbox-white jbox-xxx">
+<h3>这些比赛即将开始 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+</h3>
+{% for m in prematches %}
+<div class="match5-item">
+	<p class="match5-title"><a class="vi-link" target="_blank" href="{{m.get_absolute_url}}">{{m.get_nopoint_title}}</a></p>
+	<p class="match5-date">{{m.date|date:"Y-m-d"}} {{m.time|time:"H:i"}} {{m.get_league}}</p>
+</div>
+{% endfor %}
+</div>
+-->
+
+
+
+<!-- 球评区 -->
+<div id="home-reviews" class="jbox-white jbox-xxx">
+<h3>这些球评值得看看 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+</h3>
+
+<ul class="reviewul">
+	{% for r in reviews %}
+	<li>
+	<p><a class="vi-link" href="{{r.get_absolute_url}}">{{r.title}}</a><br/>
+	<span class="cgray">{{r.author.username}} &nbsp;&nbsp;&nbsp;{{r.create|date:"Y-m-d H:i"}} &nbsp;&nbsp;&nbsp;{{r.like}} 喜欢</span><br/>
+	<span class="cgray">{{r.get_match_title}}</span>
+	</p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+</div>
+
+
+
+<!-- 球员区 -->
+<div id="home-stars" class="jbox-white jbox-xxx">
+<h3>角旗区的球星们&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+	<a class="vi-link" href="/player/all/">全部</a>
+</h3>
+
+<ul class="logoul">
+	{% for player in playerstars %}
+	<li><a href="{{player.get_absolute_url}}"><img class="ulogo" src="{{player.logo.url}}"/></a>
+	<p class="logop"><a class="vi-link" href="{{player.get_absolute_url}}">{{player.name}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+
+<div class="clearfloat"></div>
+</div>
+
+
+
+<!-- 球迷区 -->
+<div id="home-fans" class="jbox-white jbox-xxx">
+<h3>角旗区的同学们&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+	<a class="vi-link" href="/accounts/all/">全部</a>
+</h3>
+
+<ul class="logoul">
+	{% for fan in fans %}
+	<li><a href="{{fan.get_absolute_url}}"><img class="ulogo" src="{{fan.logo.url}}"/></a>
+	<p class="logop"><a class="vi-link" href="{{fan.get_absolute_url}}">{{fan.user.username}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+
+<div class="clearfloat"></div>
+</div>
+{% endblock %}

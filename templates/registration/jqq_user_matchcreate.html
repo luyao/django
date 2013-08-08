@@ -1,0 +1,23 @@
+{% extends "registration/jqq_user_base.html" %}
+
+{% block jqq-user-matchcreate %} 
+<!-- 创建的比赛 -->
+
+<div class="jbox-tip">
+	<p>创建了 {{createlist|length}} 场比赛</p>
+</div>
+
+<div class="jbox-white">
+{% load pagination_tags %}
+{% autopaginate createlist 20 %}
+{% paginate using "jqq_pagination.html" %}
+
+{% for match in createlist %}
+	{% include 'infoitem_match.html' %}
+{% empty %}
+	<p class="vi-help">呃，还没创建过比赛呢~...</p>
+{% endfor %}
+
+{% paginate using "jqq_pagination.html" %}
+</div>
+{% endblock %}

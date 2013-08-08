@@ -1,0 +1,37 @@
+{% extends "registration/jqq_user_base.html" %}
+
+{% block jqq-user-style %}
+<style type="text/css">
+#user-intronew{min-height:300px; background:white; padding-top:4px; padding-bottom:12px; margin:0}
+#intronew-left{float:left; margin-right:10px; text-align:right; font-size:15px;}
+#intronew-right{float:left; width:520px;}
+#intronew-left img{display:block; padding:4px; margin-top:10px; min-height:50px;}
+#intronew-right div{margin-top:10px;}
+#intronew-right input{padding:4px; font-size:14px; width:500px; height:20px; border:1px solid #ccc;}
+#intronew-right textarea{padding:4px; font-size:14px; width:500px; max-width:500px; height:200px; border:1px solid #ccc;}
+#intronew-right p{padding-top:10px}
+</style>
+{% endblock %}
+{% block jqq-script %}
+<script>
+$(document).ready(function(){
+	$("#id_intro").html("{{user.get_profile.intro|escapejs}}");
+});
+</script>
+{% endblock %}
+
+{% block jqq-user-intronew %} 
+<div id="user-intronew" class="jbox-white">
+	<div id="intronew-left"> <img src="{{profile.logo.url}}"/> </div>
+
+	<div id="intronew-right">
+		<form action="" method="post" id="intro-form">{% csrf_token %}
+			<div> {{form.intro}} {{form.intro.errors}} </div>
+			<div> <button class="vi-button" type="submit" id="submit">更新介绍</button> </div>
+			<p>&gt; <a class="vi-link" href="{{profile.get_absolute_url}}">取消</a></p>
+		</form>
+	</div>
+	<div class="clearfloat"></div>
+</div>
+<div class="clearfloat"></div>
+{% endblock %}

@@ -1,0 +1,37 @@
+#!/usr/bin/perl
+# Program:
+# 		
+# History:
+# Author: luyao(yaolu1103@gmail.com)
+# Date:  2013/06/28 18:17:56
+
+use strict;
+
+my $PORT = 1109;
+my $HOST = "127.0.0.1";
+my $oper = shift || die "need param, could be start|stop|restart\n";
+
+if ($oper eq 'start') {
+	start();
+	check_if_start();
+}elsif ($oper eq 'stop'){
+	stop();
+}elsif ($oper eq 'restart'){
+	stop();
+	start();
+}else{
+	print "UNKNOW OPER $oper\n";
+}
+
+sub check_if_start{
+	`netstat -anp | grep $PORT`;
+}
+
+sub start{
+	`python manage.py runfcgi method=threaded host=$HOST port=$PORT`;
+}
+
+sub stop{
+	`ps axu | grep port=1109 | grep -v grep | awk '{print $2}' | xargs kill -9`;
+}
+

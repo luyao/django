@@ -1,0 +1,8 @@
+{% extends "registration/jqq_user_base.html" %}
+
+{%block jqq-user-comment%}
+{% load pagination_tags %}
+{% autopaginate qcommentlist 20 %}
+{% paginate using "jqq_pagination.html" %}
+{% include 'qcomment.html' %}
+{% endblock %}

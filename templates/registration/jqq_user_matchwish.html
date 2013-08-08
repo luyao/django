@@ -1,0 +1,21 @@
+{% extends "registration/jqq_user_base.html" %}
+
+{% block jqq-user-matchwish %} 
+<!-- 想看的比赛 -->
+
+<div class="jbox-white">
+	<p>想看 {{wishlist|length}} 场比赛</p>
+</div>
+
+<div class="jbox-white">
+{% load pagination_tags %}
+{% autopaginate collectlist 20 %}
+{% paginate using "jqq_pagination.html" %}
+
+{% for match in wishlist %}
+	{% include 'infoitem_match.html' %}
+{% empty %}
+	<p class="vi-help">呃，还没有想看的比赛呢~...</p>
+{% endfor %}
+</div>
+{% endblock %}

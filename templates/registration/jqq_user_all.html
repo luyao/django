@@ -1,0 +1,19 @@
+{% extends "jqq_base.html" %}
+{% block jqq-title %}<title>角旗区的同学们</title>{% endblock %}
+
+<!-- 左边主要内容 -->
+{% block jqq-main %}
+<div class="jbox-white jbox-xxx">
+<h3>角旗区的同学们 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp; </h3>
+<ul>
+	{% for fan in fans %}
+	<li class="logoli">
+		<a href="{{fan.get_absolute_url}}"><img class="ulogo" src="{{fan.logo.url}}"></a>
+		<p><a class="vi-link" href="{{fan.get_absolute_url}}">{{fan.user.username}}</a></p>
+	</li>
+	{% endfor %}
+	<div class="clearfloat"></div>
+</ul>
+<div class="clearfloat"></div>
+</div>
+{% endblock %}

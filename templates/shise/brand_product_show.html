@@ -1,0 +1,29 @@
+{%block brand_product_show%}
+<div class="beautiful_div_block fr" style="width:300px">
+	<div class="brand_info">
+		<div class="brand_name">
+			<h1>{{item.brand.name}}</h1>
+		</div>
+		<div class="brand_logo">
+			<a href="/shise/{{item.brand.id}}" title="{{item.brand.name}}">
+				<img src="/static/img/{{item.brand.logo.name}}" alt="{{item.brand.name}}"></img>
+			</a>
+		</div>
+	</div>
+	<div class="brand_items">
+		{% for item in items_in_same_brand%}
+			<div class="brand_item fl">
+				<div class="item_logo">
+					<a href="/shise/{{item.id}}" title="{{item.name}}">
+						<img src="{{item.logo110_url}}" alt="{{item.name}}"></img>
+					</a>
+				</div>
+				<div class="item_name">
+					<span>{{item.name}}</span>
+				</div>
+			</div>
+		{% endfor%}
+	</div>
+</div>
+{%endblock%}
+

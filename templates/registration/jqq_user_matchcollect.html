@@ -1,0 +1,22 @@
+{% extends "registration/jqq_user_base.html" %}
+
+{% block jqq-user-matchcollect %} 
+<!-- 收藏的比赛 -->
+
+<div class="jbox-tip">
+	<p>收藏了 {{collectlist|length}} 场比赛</p>
+</div>
+
+<div class="jbox-white">
+{% load pagination_tags %}
+{% autopaginate collectlist 20 %}
+{% paginate using "jqq_pagination.html" %}
+
+{% for match in collectlist %}
+	{% include 'infoitem_match.html' %}
+{% empty %}
+	<p class="vi-help">呃，还没收藏比赛呢~...</p>
+{% endfor %}
+
+</div>
+{% endblock %}

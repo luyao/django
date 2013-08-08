@@ -1,0 +1,27 @@
+{% extends "jqq_base.html" %}
+{% block jqq-title %}<title>测试富文本编辑器</title>{% endblock %}
+{% block jqq-script %}
+{% endblock %}
+
+<!-- 左边主要内容 -->
+{% block jqq-main %}
+<div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap" data-isabout="0">
+<div class="zm-editable-tip">
+<iframe frameborder="no" scrolling="no" marginwidth="0" marginheight="0" border="0" width="300" height="250"  src="http://scamp.samboc.com/saxcreative.do?mark=0&sn=050000000000000000000000&pid=15699503875857725450&aid=877&url=nourl:sina&sinaclick=%%CLICK_URL_ESC%%"></iframe></div>
+<div class="zm-editable-content"></div>
+</div>
+
+<div id="url_area" style="border:1px solid red; width:550px; height:500px;">
+<form>
+<script type="text/javascript" src="/static/js/nicEdit.js"></script>
+<script type="text/javascript">
+	bkLib.onDomLoaded(function() {
+		new nicEditor({ fullPanel: 'true' }).panelInstance('txtContent');
+	});
+</script>
+<textarea id="txtContent" style="height:400px; width:500px; margin:10px;"></textarea>
+</form>
+</div>
+
+<div id="result"> </div>
+{% endblock %}

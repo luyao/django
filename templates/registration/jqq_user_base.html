@@ -1,0 +1,82 @@
+{% extends "jqq_base.html" %}
+{% block jqq-title %}<title>{{profile.user.username}}的角旗区</title>{% endblock %}
+{% block jqq-style %}
+<style type="text/css">
+#user-info{margin-top:10px}
+#user-info p{padding-bottom:10px}
+#user-info img{padding-top:10px}
+</style>
+{% block jqq-user-style %} {% endblock %}
+{% endblock %}
+
+{% block jqq-main %}
+<h1><a class="vi-link" href="{{profile.get_absolute_url}}"><span style="font-size:24px;">{{profile.user.username}}</span></a> 的角旗区</h1>
+
+{% block jqq-user-matchseen %} {% endblock %}
+{% block jqq-user-matchwish %} {% endblock %}
+
+{% block jqq-user-home %} {% endblock %}
+{% block jqq-user-matchcollect %} {% endblock %}
+{% block jqq-user-matchcreate %} {% endblock %}
+{% block jqq-user-clubfollow %} {% endblock %}
+{% block jqq-user-playerfollow %} {% endblock %}
+{% block jqq-user-matchreview %} {% endblock %}
+{% block jqq-user-comment %} {% endblock %}
+
+{% block jqq-user-intronew %} {% endblock %}
+{% block jqq-user-logonew %} {% endblock %}
+{% block jqq-user-passwordreset %} {% endblock %}
+
+{% endblock %}
+
+{% block jqq-side %}
+<!-- 我的logo和slogan -->
+<div id="user-info" align="center" class="jbox-white">
+	<a href="{{profile.get_absolute_url}}"><img src="{{profile.logobig.url}}"/></a>
+	<p>{{profile.intro|linebreaksbr}}</p>
+</div>
+
+
+
+<!-- 我在角旗区的基本数据信息 -->
+<div class="jbox-white jbox-xxx jbox-manage">
+<h3>比赛是足球的灵魂 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;</h3>
+	<div>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="{{profile.get_absolute_url}}commentall/">好友留言</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="{{profile.get_absolute_url}}clubfollow/">关注的球队</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="{{profile.get_absolute_url}}playerfollow/">关注的球员</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="{{profile.get_absolute_url}}matchcollect/">收藏的比赛</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="{{profile.get_absolute_url}}matchcreate/">创建的比赛</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="{{profile.get_absolute_url}}matchreview/">写过的球评</a></p>
+	</div>
+</div>
+
+
+
+<!-- 账户设置与各种权限 -->
+{% if user.is_authenticated %}
+{% ifequal user.get_profile.id profile.id%}
+<div class="jbox-white jbox-xxx jbox-manage">
+<h3>账户设置 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;</h3>
+	<div>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="/accounts/intronew/">更新自我介绍</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" href="/accounts/logonew/">更新头像</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" target="_blank"  href="/clubcreate/">申请创建球队</a></p>
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" target="_blank"  href="/matchnew/">创建我们自己的比赛</a></p>
+
+	{% if user.get_profile.is_matcher %}
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" target="_blank"  href="/matchcreate/">创建4大联赛比赛</a></p>
+	{% endif %}
+
+	{% if user.get_profile.is_reporter %}
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" target="_blank"  href="/news/new/">写新闻</a></p>
+	{% endif %}
+
+	{% if user.get_profile.is_monitor %}
+	<p>&gt;&nbsp;&nbsp;<a class="vi-link" target="_blank"  href="/monitor/">角旗区监控</a></p>
+	{% endif %}
+	</div>
+</div>
+{% endifequal %}
+{% endif %}
+{% endblock %}

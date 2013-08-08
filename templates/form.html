@@ -1,0 +1,35 @@
+<form enctype="multipart/form-data" action="" method="post" id="brand_form">
+	<div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="d2cd05a549c0f505929bf80fdc52b56f"></div>
+	<div>
+		<fieldset class="module aligned ">
+			<div class="form-row name">
+				<div>
+					<label for="id_name" class="required">彩妆名:</label>
+					<input id="id_name" maxlength="60" type="text" name="name" size="150">
+				</div>
+			</div>
+
+			<div class="form-row logo">
+				<div>
+					<label for="id_logo">Logo原图:</label>
+					<input type="file" name="logo" id="id_logo">
+				</div>
+			</div>
+		</fieldset>
+
+		<div class="submit-row">
+			<input type="submit" value="Save" class="default" name="_save">
+			<input type="submit" value="Save and add another" name="_addanother">
+			<input type="submit" value="Save and continue editing" name="_continue">
+		</div>
+
+		<script type="text/javascript">document.getElementById("id_name").focus();</script>
+		<script type="text/javascript">
+			(function($) {
+			 var field = null;
+
+
+			 })(django.jQuery);
+		</script>
+	</div>
+</form>

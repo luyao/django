@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %} <title>试色网登录</title> {% endblock %}
+
+
+{% block content%}
+<style type="text/css">
+.login-left{float:left; margin-right:20px; text-align:right; font-size:15px;}
+.login-right{float:left; width:400px;}
+
+.login-left label{display:block; padding:8px; margin-top:20px; height:20px;}
+.login-right div{margin-top:20px;}
+.login-right input{padding:8px; font-size:15px; width:220px; height:20px; border:1px solid #ccc;}
+.help{padding-top:20px; font-size:14px;}
+
+button.submitbtn{background:#005eac; margin-top:20px; padding:6px 20px; border:none; line-height:22px; font-size:15px; color:white; display:inline-block; cursor:pointer}
+button.submitbtn:hover{background:#750021}
+</style>
+<div class="login-form width960">
+<div class="login-left">
+	<label>邮箱</label>
+	<label>密码</label>
+</div>
+
+<div class="login-right">
+<form action="" method="post" id="log-form">{% csrf_token %}
+	<div> {{form.email}} {{form.email.errors}} </div>
+	<div> {{form.password}} {{form.password.errors}} </div>
+
+	<div> <button class="submitbtn" type="submit" id="submit">登陆</button> </div>
+	<input type="hidden" name="next" value="{{ next|escape }}" />
+	<div class="help">
+		<p>登陆不了？你可能需要：</p>
+		<p>&gt; <a class="vi-link" href="/accounts/register/">注册一个账号</a></p>
+		<p>&gt; <a class="vi-link" href="/contact/">联系管理员</a></p>
+	</div>
+</form>
+</div>
+</div>
+{% endblock %}
+

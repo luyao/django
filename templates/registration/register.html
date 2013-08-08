@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>注册帐号</title>
+{% endblock %}
+
+{% block content%}
+<style type="text/css">
+.reg-left{float:left; margin-right:20px; text-align:right; font-size:15px;}
+.reg-right{float:left; width:500px;}
+.reg-left label{display:block; padding:8px; margin-top:20px; height:20px;}
+.reg-right div{margin-top:20px;}
+.reg-right input{padding:8px; font-size:15px; width:220px; height:20px; border:1px solid #ccc;}
+#id_tos{width:25px}
+button.submitbtn{background:#005eac; margin-top:20px; padding:6px 20px; border:none; line-height:22px; font-size:15px; color:white; display:inline-block; cursor:pointer}
+button.submitbtn:hover{background:#750021}
+</style>
+
+<div class="register-form width960">
+<div id="content_block ">
+<div class="reg-left">
+	<label>邮箱</label>
+	<label>密码</label>
+	<label>确认密码</label>
+	<label>昵称</label>
+</div>
+
+<div class="reg-right">
+<form action="" method="post" id="reg-form">{% csrf_token %}
+	<div>{{form.email}} {{form.email.errors}}</div>
+	<div>{{form.password1}} {{form.password1.errors}}</div>
+	<div>{{form.password2}} {{form.password2.errors}}</div>
+	<div>{{form.username}} {{form.username.errors}}</div>
+	<div>{{form.tos}}我已认真阅读并同意试色的<a class="vi-link" href="/accounts/agreement/">《使用协议》</a> {{form.tos.errors}}</div>
+	<div><button class="submitbtn" type="submit" id="submit">注册</button></div>
+</form>
+</div>
+
+<div class="clearfloat"></div>
+</div>
+</div>
+{% endblock content%}
+

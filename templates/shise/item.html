@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}{{shise.get_name}}{% endblock %}
+
+{% block content %}
+<div class="content width960">
+	<!-- product information -->
+	<div class="product_info beautiful_div_block fl width645">
+		<div class="product_info_inner">
+			<div class="nav_trace">
+				<h2 class="title fl" style="display : inline;white-space:nowrap;">
+					<a href="/">homepage</a>
+					>
+					<a href="#">{{item.brand.name}}</a>
+					>
+					<a href=#>{{item.name}}</a>
+					<!--TODO: get url nav from the view function-->
+					{%for url in urlInfoList %}
+						<a href={{url.url}}>{{url.name}}</a>
+						{%if forloop.last %}
+						{%else%}
+							>
+						{%endif%}
+					{%endfor%}
+				</h2>
+			</div>
+			<!-- main product -->
+			<div class="product_card">
+				{% block product_card %}
+				{% include "shise/product_card.html" %}
+				{%endblock%}
+			</div>
+		</div>
+	</div>
+
+	<!-- comment infomation-->
+	<div class="comment_info_card fr beautiful_div_block" style="width:300px">
+		{%block comment_info_card %}
+		{%include "shise/comment_info_card.html"%}
+		{%endblock%}
+	</div>
+
+	<!--left part, includs comment form and top products -->
+	<div class="left_part">
+		<!--广告的展示区-->
+		{%block ad_links%}
+		{%include 'shise/ad_links.html'%}
+		{%endblock%}
+		<!--好评的产品展示-->
+		<div class="top_product_show_div width645">
+			{%block top_product_show%}
+			{%include "shise/top_product_show.html"%}
+			{%endblock%}
+		</div>
+		<!--评论提交窗口-->
+		<div class="post_comment beautiful_div_block fl width645">
+			{%block post_comment%}
+			{% include "shise/post_comment.html" %}
+			{%endblock%}
+		</div>
+	</div>
+
+	<!--right side bar, includs user information and product in same brand -->
+	<div class="right_part">
+		<!--user_info_card-->
+		<div class="user_info_card width300">
+			{%block user_info_card%}
+			{%include 'shise/user_info_card.html'%}
+			{%endblock%}
+		</div>
+		<!--同品牌产品展示-->
+		<div class="brand_product_show width300">
+			{%block brand_product_show%}
+			{%include 'shise/brand_product_show.html'%}
+			{%endblock%}
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/static/js/showStars.js"></script>
+{% endblock %}
+

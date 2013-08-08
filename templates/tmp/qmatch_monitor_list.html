@@ -1,0 +1,27 @@
+<!--  比赛列表区开始  -->
+<div class="jqq-news jqqmatches">
+<h3>这些比赛 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp; </h3>
+
+<ul>
+{% for m in matchlist %}
+<!--单条比赛-->
+<li id="{{m.id}}" class="newsli">
+	<span class="stitle cgray">
+	<a class="vi-link" target="_blank" href="{{m.get_absolute_url}}">{{m.get_title}}</a>
+	{{m.get_league}}
+	</span>
+
+	<span class="scount cgray">
+	{{m.get_creator.username}}
+	</span>
+
+	<span class="sdate cgray">
+	{{m.date|date:"Y-m-d"}} {{m.time|time:"H:i"}}
+	</span>
+</li>
+{% empty %}
+<p class="vi-help">呃，没有比赛</p>
+{% endfor %}
+</ul>
+</div>
+<!--  比赛区结束  -->

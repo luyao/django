@@ -1,0 +1,21 @@
+{% extends 'scrollable/scroll.html' %}
+
+{% block prev_button%}
+<div class="prev verticalCenter prev_button">
+	<img src='/static/img/prev_button.png' alt="prev"></img>
+</div>
+{% endblock%}
+
+{% block next_button%}
+<div class="next verticalCenter next_button">
+	<img src='/static/img/next_button.png' alt="next"></img>
+</div>
+{% endblock%}
+
+{% block scroll_imgs %}
+<div class="scrollEl"><a href="/hello"><img src='/static/img/s1.jpg' width=950></img></a></div>
+<div class="scrollEl"><a href="/hello"><img src='/static/img/s2.jpg' width=950></img></a></div>
+<div class="scrollEl"><a href="/hello"><img src='/static/img/s3.jpg' width=950></img></a></div>
+<div class="scrollEl"><a href="/hello"><img src='/static/img/s4.jpg' width=950></img></a></div>
+{% endblock %}
+

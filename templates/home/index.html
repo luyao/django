@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+
+{% block source %}
+{% include 'scrollable/scroll_source.html'%}
+{% endblock source%}
+
+{% block header %}
+<div id="header_block">
+{% include 'header/header.html'%}
+</div>
+{% endblock header%}
+
+{% block content%}
+<div id="content_block">
+<!--scrollable bar begin: using template -->
+{% include 'scrollable/flux.html'%}
+<!--scrollable bar end -->
+<div class="clear"></div>
+
+<!--sticky_content begin-->
+<div class="width960">
+<div class="sticky_content">
+	<div class="sticky_title "> 妹子们zui❤的妆 </div>
+	{% for item in item_stick %}
+	{% if forloop.first %}
+	<div class="grid_3 sticky_post ml">
+	{% else %}
+		{% if forloop.last %}
+		<div class="grid_3 sticky_post mr">
+		{% else%}
+			<div class="grid_3 sticky_post">
+		{% endif %}
+	{%endif%}
+		<a href="/shise/{{ item.id}}" title="{{ item.name}}">
+			<img src="{{ item.logo300_url}}" alt="{{ item.name}}" class="thumb" style="opacity: 0.9999999602635717;">
+		</a>
+		<a href="/shise/{{ item.id}}" title="{{item.name}}" class="sticky_a">{{item.name}}</a>
+	</div>
+	{%endfor%}
+</div>
+</div>
+<!--sticky_content end-->
+<div class="clear"></div>
+
+{{ item_list_template|safe }}
+<div class="clear"></div>
+</div>
+{% endblock content%}
+
+{% block footer %}
+<div id="footer_block">
+{% include 'footer.html' %}
+</div>
+{% endblock footer %}
+

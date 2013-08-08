@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block source %}
+{% include 'scrollable/scroll_source.html'%}
+{% endblock source%}
+
+{% block header %}
+{% include 'header/header.html'%}
+{% endblock header%}
+
+{% block content%}
+
+<!--scrollable bar begin: using template -->
+{% include 'scrollable/scroll_realimg.html'%}
+<!--scrollable bar end -->
+<div class="clear"></div>
+
+<!--sticky_content begin-->
+<div class="width960">
+<div class="sticky_content">
+	<div class="sticky_title "> 妹子们zui❤的妆 </div>
+	{% for item in item_stick %}
+	{% if forloop.first %}
+	<div class="grid_3 sticky_post ml">
+	{% else %}
+		{% if forloop.last %}
+		<div class="grid_3 sticky_post mr">
+		{% else%}
+			<div class="grid_3 sticky_post">
+		{% endif %}
+	{%endif%}
+		<a href="{{ item.page_url }}" title="{{ item.title }}">
+			<img src="{{ item.image_url }}" alt="{{ item.title }}" class="thumb" style="opacity: 0.9999999602635717;">
+		</a>
+		<a href="{{ item.page_url }}" title="{{item.title }}" class="sticky_a">{{item.title }}</a>
+	</div>
+	{%endfor%}
+</div>
+</div>
+<!--sticky_content end-->
+<div class="clear"></div>
+
+<!--item list~-->
+<div class="content_home clearfix"><!--begin content-->
+	<!--begin loops-->
+	<div class="posts-loop container_12 clearfix masonry" style="position: relative;  overflow: hidden;">
+	{% for item in item_list %}
+	<!--begin box-->
+	<!-- style="position: absolute; top: 0px; left: 0px;"-->
+	<style setPosition( '{{ forloop.counter0 }}' ) ></style>
+	<div class="post box grid_3 masonry-brick" id="post-{{ forloop.counter0 }}" ">
+		<div class="post_meta_home">
+			<div class="thumb-img">
+				<a href="{{item.page_url}}" title="{{item.title}} ">
+					<img src="{{item.image_url}}" alt="{{item.title}}" class="thumb"">
+				</a>
+			</div>
+			<div class="like_it clearfix"></div>
+			<h2><a href="{{item.page_url}}" title="{{item.title}}">{{item.title}}</a></h2>
+			{{item.description}}
+		</div>
+		<!--分享-->
+		<div class="box_bottom"></div>
+	</div>
+	<!--end box-->
+	{%endfor%}
+	</div><!--end loops-->
+</div>
+</div>
+
+{% endblock content%}
+
+

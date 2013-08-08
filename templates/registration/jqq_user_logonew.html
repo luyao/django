@@ -1,0 +1,30 @@
+{% extends "registration/jqq_user_base.html" %}
+
+{% block jqq-user-style %}
+<style type="text/css">
+#user-logonew{min-height:200px; padding:0; margin-top:10px;}
+#picture-left{float:left; margin-right:20px;}
+#picture-right{float:left; width:520px;}
+#picture-left img{display:block; padding:4px; min-height:50px;}
+#picture-right p{padding-top:10px}
+</style>
+{% endblock %}
+
+{% block jqq-user-logonew %} 
+<div id="user-logonew" class="jbox-white">
+	<div id="picture-left">
+		<img src="{{profile.logo.url}}"/>
+	</div>
+
+	<div id="picture-right">
+	<form action="" enctype="multipart/form-data" method="post" id="picture-form">{% csrf_token %}
+		<div>一张精彩照片，将是你在角旗区独特的形象</div>
+		<div style="margin-top:30px"> {{form.logo}} {{form.logo.errors}} </div>
+		<div style="margin-top:40px"><button class="vi-button" type="submit" id="submit">更新 logo</button></div>
+		<p>&gt; <a class="vi-link" href="{{profile.get_absolute_url}}">取消</a></p>
+	</form>
+	</div>
+	<div class="clearfloat"></div>
+</div>
+<div class="clearfloat"></div>
+{% endblock %}

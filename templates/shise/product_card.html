@@ -1,0 +1,43 @@
+<!-- product definition -->
+{% block product_card %}
+<div class="product_img_part fl" style="width:300px;">
+	<div class="img_wrap left">
+		<a class="img_wrap_link">
+			<img src="{{item.logo300_url}}">
+		</a>
+	</div>
+	<div class="like">
+		<div class="favorite">
+			<!--TODO-->
+			<a src="/shise/like/{{item.id}}/{{user.id}}" class="fav_img"></a>
+			<div class="like_item_cnt">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="product_info_part fr">
+	<h1 class="product_title">{{item.name}}</h1>
+	<dl class="product_detail">
+			<dt>分类：</dt><dd>{{item.category}}</li>
+			<dt>规格： </dt><dd>{{item.spec}}</li>
+			<dt>功效：</dt><dd>{{item.function}}</li>
+			<dt>成分：</dt><dd>{{item.composition}}</li>
+			<dt>描述：</dt><dd>{{item.description}}</li>
+	</dl>
+	</br>
+	<div class="buttons">
+		<div class="main_button">
+			<button style="float:left;background-color:#ffff80;">申请试色</button>
+			<button style="float:left;background-color:#FA649F">点评</button>
+			</br>
+			</br>
+		</div>
+		<div class="app_button">
+			<button style="float:left;">试用装</button>
+			<button style="float:left;">分装</button>
+			<button style="float:left;">闲置</button>
+		</div>
+	</div>
+</div>
+{%endblock%}
+

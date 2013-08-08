@@ -1,0 +1,88 @@
+{% extends "registration/jqq_user_base.html" %}
+{% block jqq-user-style %}
+<style type="text/css">
+#user-home-mc li, #user-home-ml li{float:left; margin:0; padding:4px;}
+</style>
+{% endblock %}
+
+<!-- 左边主要内容 -->
+{% block jqq-user-home %}
+<!-- 关注的球队 -->
+<div class="jbox-white jbox-xxx">
+	<h3>关注的球队 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+		<a class="vi-link" href="clubfollow/" target="_blank">全部 {{clubcount}}</a>
+	</h3>
+
+	<ul>
+		{% for c in clublist %}
+		<li class="logoli"><a href="{{c.get_absolute_url}}"><img src="{{c.logo.url}}"></a>
+		<p><a class="vi-link" href="{{c.get_absolute_url}}">{{c.name}}</a></p>
+		</li>
+		{% endfor %}
+		<div class="clearfloat"></div>
+	</ul>
+	<div class="clearfloat"></div>
+</div>
+
+<!-- 关注的球员 -->
+<div class="jbox-white jbox-xxx">
+	<h3>关注的球员 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+		<a class="vi-link" href="playerfollow/" target="_blank">全部 {{playercount}}</a>
+	</h3>
+
+	<ul>
+		{% for c in playerlist %}
+		<li class="logoli"><a href="{{c.get_absolute_url}}"><img src="{{c.logo.url}}"></a>
+		<p><a class="vi-link" href="{{c.get_absolute_url}}">{{c.name}}</a></p>
+		</li>
+		{% endfor %}
+		<div class="clearfloat"></div>
+	</ul>
+	<div class="clearfloat"></div>
+</div>
+
+
+<!-- 收藏的比赛 -->
+<div id="user-home-ml" class="jbox-white jbox-xxx">
+	<h3>收藏的比赛 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+		<a class="vi-link" href="matchcollect/" target="_blank">全部 {{collectcount}}</a>
+	</h3>
+	<ul>
+		{% for m in collectlist %}
+		<li><a target="_blank" href="{{m.get_absolute_url}}"><img class="mlogo" src="{{m.logo.url}}"></a></li>
+		{% endfor %}
+		<div class="clearfloat"></div>
+	</ul>
+	<div class="clearfloat"></div>
+</div>
+
+
+<!-- 创建的比赛 -->
+<div id="user-home-mc" class="jbox-white jbox-xxx">
+	<h3>创建的比赛 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+		<a class="vi-link" href="matchcreate/" target="_blank">全部 {{createcount}}</a>
+	</h3>
+	<ul>
+		{% for m in createlist %}
+		<li><a target="_blank" href="{{m.get_absolute_url}}"><img class="mlogo" src="{{m.logo.url}}"></a></li>
+		{% endfor %}
+		<div class="clearfloat"></div>
+	</ul>
+	<div class="clearfloat"></div>
+</div>
+
+
+<!-- 写过的球评 -->
+<div id="user-home-mr" class="jbox-white jbox-xxx">
+	<h3>写过的球评&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+		<a class="vi-link" href="matchreview/" target="_blank">全部 {{reviewcount}}</a>
+	</h3>
+	{% for review in reviewlist %}
+		{% include 'infoitem_review.html' %}
+	{% endfor %}
+</div>
+
+
+<!-- 留言 -->
+{% include 'qcomment.html' %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{%block footer%}
+{%if top_offset%}
+<div id="foot_wrap" style="position:absolute;z-index:99999px;top:{{top_offset}}px;">
+{%else%}
+<div id="foot_wrap" style="position:absolute;z-index:99999px;top:1400px;">
+{%endif%}
+	<div class="width960 clearfix">
+		<div class="shiseInfo ml">
+			<h2>试色网</h2>
+			<div class="attentionlist">
+				<a target="_blank" href="http://weibo.com/u/2075301001" class="item forsina" title="关注sina"></a>
+				<a target="_blank" href="http://329531745.qzone.qq.com/" class="item forqzone" title="关注QQ空间"></a>
+				<a target="_blank" href="http://zhan.renren.com/loveangelfish?from=profile" class="item forrenren" title="人人小站"></a>
+				<a target="_blank" href="/hello/" class="item forwechart" title="关注微信"></a>
+				<a target="_blank" href="http://github.com/luyao" class="item forcoder" title="关注git"></a>
+			</div>
+			<p class="infos" title="info" style="text-align:left;">
+				This!Site!Is!Powered!By!Django!<br>
+				©2013 shise.com,All Rights Reserved.
+			</p>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock%}

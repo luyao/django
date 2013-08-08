@@ -1,0 +1,50 @@
+{%block comment_info_card %}
+<div class="spu_head_rc">
+	<div class="score_wrap clearfix">
+		<p class="common_s beautiful_div_block" style="">评分:<span class="score_num">{{average_score.total}}</span></p>
+			<div class="star_rate">
+				<span>
+					<!--使用for循环根据得分计算star的情况-->
+					{%for item in average_score.cate %}
+						{%if forloop.counter <= average_score.total %}
+							<b class="red_star"></b>
+						{%else%}
+							<b class="null_star"></b>
+						{%endif%}
+					{%endfor%}
+				</span>
+			</div>
+	</div>
+
+	<!-- min:10 max:165 -->
+	<!--长度的计算公式暂定为score*31 + 10-->
+	<ul class="cate_list_wrap girl_list_fr" style="margin-left:10px">
+	{% for detail in average_score.cate %}
+		<li>
+			<span>{{detail.name}}</span>
+			<p class="score" style="width: {%widthratio detail.score 1 31|add:10 %}px">{{detail.score}}</p>
+		</li>
+	{%endfor%}
+	</ul>
+
+	<div class="user_shin_type_wrap">
+		<p class="t_title">点评者的肤质分布</p>
+		<div style="margin:auto;">
+		<ul class="user_skin_type_wrap">
+			{% for commenter in average_score.type %}
+			<li style="">
+				<b><span class="u_num" style="bottom:53px">{{commenter.score}}</span><i style="height:{%widthratio commenter.score 1 8|add:2%}px"></i></b>
+				{#使用漂亮的分割线#}
+				{% if forloop.first %}
+				<p style="">{{commenter.name}}<span>{{commenter.nTotal}}人</span></p>
+				{%else%}
+				<p style="border-left: 1px dotted #b7b7b7;">{{commenter.name}}<span>{{commenter.nTotal}}人</span></p>
+				{%endif%}
+			</li>
+			{%endfor%}
+		</ul>
+		</div>
+	</div>
+
+</div>
+{%endblock%}

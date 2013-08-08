@@ -1,0 +1,17 @@
+<!--begin box-->
+<div class="post box grid_3 masonry-brick" id="post-{{ forloop.counter0 }}" 
+	style="position: absolute; left:{{left_px}}px; top:{{top_px}}px">
+	<div class="post_meta_home">
+		<div class="thumb-img">
+			<a href="/shise/{{item.id}}" title="{{item.title}} ">
+				<img src="{{item.logo300_url}}" alt="{{item.title}}" class="thumb">
+			</a>
+		</div>
+		<div class="like_it clearfix"></div>
+		<h2><a href="/shise/{{item.id}}" title="{{item.title}}">{{item.title}}</a></h2>
+		{{item.description}}
+	</div>
+	<!--分享-->
+	<div class="box_bottom"></div>
+</div>
+<!--end box-->

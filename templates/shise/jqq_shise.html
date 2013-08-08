@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{shise.get_name}}{% endblock %}
+{% block jqq-style %}
+<style type="text/css">
+#side{margin-top:40px;}
+#shise-creator li{float:left; margin:0; padding:8px 3px 4px 7px;}
+#shise-creator p{text-align:center; width:50px}
+body{background:#f3f3f3}
+
+</style>
+{% endblock %}
+
+<!-- 左边主要内容 -->
+{% block jqq-main %}
+
+
+
+<!-- 比赛信息区 -->
+{% include 'infocard_shise.html' %}
+
+
+<!--  评论  -->
+{% include 'qcomment.html' %}
+{% endblock %}
+
+
+<!-- 侧边栏 -->
+{% block jqq-side %}
+
+
+<!-- 创建者 -->
+<div id="shise-creator" class="jbox-white">
+	<h3>创建者&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;</h3>
+
+	<ul>
+	<li><a target="_blank" href="{{shise.get_creator.get_profile.get_absolute_url}}"><img class="plogo" src="{{shise.get_creator.get_profile.logo.url}}"></a>
+		<p><a class="vi-link" target="_blank" href="{{shise.get_creator.get_profile.get_absolute_url}}">{{shise.get_creator.username}}</a></p>
+	</li>
+	<div class="clearfloat"></div>
+	</ul>
+</div>
+
+
+
+{% endblock %}

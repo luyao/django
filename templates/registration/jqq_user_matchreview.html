@@ -1,0 +1,27 @@
+{% extends "registration/jqq_user_base.html" %}
+{% block jqq-user-style %}
+<style type="text/css">
+#user-review-title{min-height:20px; background:white; padding:4px; margin-bottom:10px}
+#user-review-title p{margin:0; padding:4px 8px; font-size:14px; color:#8c7e7e}
+#user-review{min-height:50px; padding-top:0px; padding-bottom:0px; margin-top:10px; margin-bottom:20px}
+</style>
+{% endblock %}
+
+{% block jqq-user-matchreview %} 
+<!-- 写过的球评 -->
+<div id="user-review-title">
+<p>写过 {{reviewlist|length}} 篇球评</p>
+</div>
+
+{% load pagination_tags %}
+{% autopaginate reviewlist 10 %}
+{% paginate using "jqq_pagination.html" %}
+
+<div id="user-review" class="jbox-white">
+{% for review in reviewlist %}
+	{% include 'infoitem_review.html' %}
+{% empty %}
+	<p class="vi-help">呃，还没写过球评呢...</p>
+{% endfor %}
+</div>
+{% endblock %}

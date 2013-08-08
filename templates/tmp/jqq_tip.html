@@ -1,0 +1,13 @@
+{% extends "jqq_base.html" %}
+{% block jqq-title %}<title>小提示</title>{% endblock %}
+{% block jqq-style %}
+<style type="text/css">
+#cmbr-box{background:#dedede; padding:16px; margin:16px;}
+</style>
+{% endblock %}
+
+{%block jqq-main%}
+<div id="cmbr-box" class="jbox-white">
+	<p>{{tip|safe|linebreaksbr}}</p>
+</div>
+{% endblock %}

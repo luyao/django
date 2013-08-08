@@ -1,0 +1,19 @@
+{% extends "jqq_base.html" %}
+{% block jqq-title %}<title>链接加密解密角旗区</title>{% endblock %}
+{% block jqq-script %}
+<script type="text/javascript" src="/static/js/converter.js"></script>
+{% endblock %}
+
+<!-- 左边主要内容 -->
+{% block jqq-main %}
+<div id="url_area">
+	<form onsubmit="return(process())" id="url_form">
+	<div>
+	<input type="text" style="width:580px; height:20px; margin:10px;" value="支持迅雷、快车、fs2you、旋风" id="url" ><br/>
+	<input type="submit" style="height:30px; margin:10px; padding:2px 8px;" value="加密/解密" class="button" id="searchsubmit">
+	</div>
+	</form>
+</div>
+
+<div id="result"> </div>
+{% endblock %}

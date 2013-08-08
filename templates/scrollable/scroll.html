@@ -1,0 +1,25 @@
+<div id="wrapper" class = "width1080">
+
+    <div id="controls">
+		{% block prev_button %}
+      		<div class="prev verticalCenter prev_button">prev</div>
+		{% endblock prev_button%}
+		{% block next_button %}
+      		<div class="next verticalCenter next_button">next</div>
+		{% endblock next_button %}
+	</div>
+
+	<div id="myScroll" class = "width960">
+		<!--
+		<div id="img_container" class="scroll_container">
+		-->
+			{% block scroll_imgs %}
+			<div class="scrollEl" style="background-color:#9999ff">1</div>
+			<div class="scrollEl" style="background-color:#cc9900">2</div>
+			<div class="scrollEl" style="background-color:#660066">3</div>
+			<div class="scrollEl" style="background-color:#009966">4</div>
+			{% endblock %}
+		<!--/div-->
+    </div>
+
+</div>

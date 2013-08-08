@@ -1,0 +1,19 @@
+<div class="top_product_show beautiful_div_block fl">
+	<div class="sticky_title ">最热试用</div>
+	{% for item in item_stick %}
+	{% if forloop.first %}
+	<div class="grid_3 sticky_post ml">
+	{% else %}
+		{% if forloop.last %}
+		<div class="grid_3 sticky_post mr">
+		{% else%}
+			<div class="grid_3 sticky_post">
+		{% endif %}
+	{%endif%}
+		<a href="/shise/{{ item.id }}" title="{{ item.name}}">
+			<img src="{{ item.logo110_url}}" alt="{{ item.name}}" class="thumb" style="opacity: 0.9999999602635717;">
+		</a>
+		<a href="/shise/{{ item.id}}" title="{{item.name}}" class="top_product_a">{{item.name}}</a>
+	</div>
+	{%endfor%}
+</div>

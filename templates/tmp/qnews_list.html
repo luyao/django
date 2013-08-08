@@ -1,0 +1,30 @@
+<!--  新闻列表区开始  -->
+<div class="jqq-news">
+<h3>这些新闻 &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;
+{% if not allnews_now %}
+	 <a class="vi-link" href="newsall/" target="_blank">全部</a>
+{% endif %}
+</h3>
+
+<ul>
+{% for news in newslist %}
+<!--单条新闻-->
+<li id="{{news.id}}" class="newsli">
+	<span class="stitle">
+	<a class="vi-link" target="_blank" href="{{news.get_absolute_url}}">{{news.title|slice:"30"}}</a>
+	</span>
+
+	<span class="scount cgray">
+	{{news.get_comments_count}} / {{news.get_read_count}}
+	</span>
+
+	<span class="sdate cgray">
+	{{news.create|date:"m-d H:i"}}
+	</span>
+</li>
+{% empty %}
+<p class="vi-help">呃，还没有新闻</p>
+{% endfor %}
+</ul>
+</div>
+<!--  新闻区结束  -->

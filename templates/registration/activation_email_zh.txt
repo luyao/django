@@ -1,0 +1,14 @@
+您好：
+
+感谢您注册{{site}}。
+
+请在 {{expiration_days}} 天内点击下面的链接来激活您在 {{site}} 的帐号。
+http://{{site_address}}/accounts/key/{{activation_key}}/
+如果无法点击上面的链接，您可以复制该地址，并粘帖在浏览器的地址栏中访问。
+
+账号激活后，请进入个人主页设置自我介绍和个人logo。
+如果您在 {{expiration_days}} 天内没有激活账号，您的账号将失效，请重新注册。
+如果您有任何问题，可以写信给管理员 help@shise.com ，很乐意为您服务。
+
+{{site}}
+{{site_address}}

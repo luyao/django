@@ -1,0 +1,106 @@
+<div id='header'>
+	<a name="top"></a>
+	{% block login_info %}
+		<!-- TODO: add third-part login -->
+		<div class='width960 login clear_fix'>
+		<div class='fl' style="width:100px;height:31px">
+			<div class='follow_shise_wrap '></div>
+		</div>
+		<div class='fr' style="width:400px;height:25px; font-size:80%">
+			<div class="info_show fr">  
+				<ul class="login_methods fr" id="show_login">
+					{% if user.is_authenticated %}
+						<li class="fl nav_login_wrap login_mod_wrap">
+						<a href="/accounts/logout/">退出</a>
+						<a href="{{user.get_profile.get_absolute_url}}">{{user.username}}</a>
+						<a href="/qmail/"><span style="font-size:12px; display:inline-block;" id="qmail-count"></span></a>
+						<a href="/qnote/"><span style="font-size:12px; display:inline-block;" id="note-count"></span></a>
+						</li>
+					{% else %}
+						<li class="fl nav_login_wrap login_mod_wrap">
+							<a href="/accounts/register/" class="regist fl mr5">注册</a>
+							<a href="/accounts/login/" class="login  fl">登录</a>
+						</li>
+					{% endif %}
+					<li class="other_login fl login_mod_wrap">
+						<a href="/oauth/login/sina/mogujie" class="login_bg weibo_login">微博登录</a>
+						<a href="/oauth/login/qq/mogujie" class="login_bg qq_login">QQ登录</a>
+						<a href="/oauth/login/taobao/mogujie" class="login_bg tb_login">淘宝登录</a>
+					</li>
+				</ul>
+			</div>
+			</div>
+		</div>
+	{% endblock login_info %}
+
+	{% block main_logo %}
+	<div class='width960 logo_wrap'>
+		<!-- logo part -->
+		<a href="/">
+			<div class='logo fl'>
+			</div>
+		</a>
+
+		<!-- search bar -->
+		<div class='main_search_box fr'>
+			<div class="selectbox" data-v="1">
+				<span class="selected">搜宝贝</span>
+				<span class="icon"></span>
+				<ol>
+					<li class="current" data-index="bao"><a href="#">宝贝</a></li>
+					<li data-index="5"><a href="#">美妆</a></li>
+					<li data-index="album"><a href="#">专辑</a></li>
+					<li data-index="2"><a href="#">用户</a></li>
+					<li data-index="4"><a href="#">小组</a></li>
+					<li class="lastli"></li>
+				</ol>
+			</div>
+			<form target="_blank" action="/search/" method="get" id="search_form">
+				<input type="text" name="q" class="ts_txt fl" value="搜~~~~~" autocomplete="off" def-val="">
+				<input type="submit" value="搜  索" class="ts_btn">
+				<input type="hidden" name="t" value="bao" id="select_type">
+			</form>
+		</div>
+	</div>
+	{% endblock main_logo%}
+	{% block nav %}
+	<div id="navigation" class="width960 clearfix">  
+		<div class="nav_item_wrap fl">
+			<ul class="nav_list clearfix">
+				<li class="cate_nav ">
+				<a class="start_try" href="/try_x_makeup/" target="_blank">
+					<span class="title fl">试色啦</span>
+					<b class="icon"></b>
+				</a>
+
+				<ul class="cate_show cate_active">
+					<li class=""><a href="/try_x_makeup/style/" class="most_new nav_link" target="_blank">风格馆<b></b></a></li>
+					<li class=""><a href="/try_x_makeup/style/" class="most_new nav_link" target="_blank">风格馆<b></b></a></li>
+				</ul>
+
+				</li>
+				<li class="first nav_item">
+					<a class="c" href="/" target="_blank" style="color:black">首页</a>
+				</li>
+				<li class="nav_item">
+					<a href="/try_x_makeup/" target="_blank">试色</a>
+					</li>
+				<li class="nav_item">
+					<a href="/try/" target="_blank">试用</a> 
+				</li>
+				<li class="nav_item">
+					<a href="/package/" target="_blank">分装</a>
+				</li>
+				<li class="nav_item">
+					<a href="/comment/" target="_blank">点评</a> 
+				</li>
+				<li class="nav_item">
+					<a href="/secondhand/" target="_blank">闲置</a>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+	{% endblock nav%}
+</div>
+

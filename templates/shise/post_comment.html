@@ -1,0 +1,82 @@
+{%block post_comment%}
+<div class="post_comment fl">
+	<div class="hd_wrap">
+		<h2 class="title fl" style="display:inline;width:620px;text-align:left;font-size:15px;margin-left:10px;">发表点评</h2>
+	</div>
+	<div class="spub_pub_box">
+		<!--用户信息部分，根据用户是否登录进行判断-->
+		<div class="user_info fl" style="width:60px;margin-left:10px;margin-right:10px">
+			{% if user.is_authenticated %}
+			{# if the user is logined, output the name, otherwise the default#}
+				<a>
+					<img class="avt icard" src="/static/img/{{user.get_profile.logo.url}}">
+				</a>
+				<p>
+				<a href="{{user.get_profile.get_absolute_url}}">{{user.username}}</a>
+				</p>
+			{% else %}
+				<a>
+					<img class="avt icard" src="/static/img/girl_avatar_default.jpg_64x64.jpg">
+				</a>
+				<p>
+					<a href="/login" class="nologin_talk">立即登录</a>
+				</p>
+			{% endif %}
+		</div>
+
+		<div class="spu_publish_me">
+		<span class="corner_top"></span> <span class="corner_bot"></span>
+		<form enctype="multipart/form-data" action="" method="post" id="sscomment_form">
+		{% csrf_token %}
+			<div class="spu_pub_content">
+				<!--评分区域-->
+				<div class="spu_score">
+					<span class="spu_mark">给它评分:</span>
+					<ul id="star_war">
+						<li id="absorption" star="0"><label>吸收度</label>
+						<span> <b></b> <b></b> <b></b> <b></b> <b></b></span>
+						</li>
+						<li id="durability" star="0"><label>持久度</label>
+						<span> <b></b> <b></b> <b></b> <b></b> <b></b></span>
+						</li>
+						<li id="anti_blooming" star="0"><label>防晕染</label>
+						<span> <b></b> <b></b> <b></b> <b></b> <b></b></span>
+						</li>
+						<li id="ppr" star="0"><label>性价比</label>
+						<span> <b></b> <b></b> <b></b> <b></b> <b></b></span>
+						</li>
+						<li id="color" star="0"><label>色彩度</label>
+						<span> <b></b> <b></b> <b></b> <b></b> <b></b></span>
+						</li>
+					</ul>
+				</div>
+				<!--发表评论的区域-->
+				<div class="pub_item">
+					<textarea class="pub_txt" id="content_submit">我来说说这款产品的使用感受...</textarea>
+				</div>
+
+			</div>
+			<!--各种按钮的区域-->
+			<div class="comment_buttons" style="padding-left:75px">
+				<div class="pub_opt">
+					<a w="pub" onclick="return false;" href="jaascript:;" class="add_face_new">表情</a>
+					<input type="file" class="add_file" id="id_imgs" name="imgs" hidefocus="true" tab="0">
+					<a class="add_pic" onclick="click4AddFile();">图片</a> 
+					<input type="text" name="absorption"      style="display:none;" id="id_absorption">
+					<input type="text" name="durability"      style="display:none;" id="id_durability">
+					<input type="text" name="anti_blooming"   style="display:none;" id="id_anti_blooming">
+					<input type="text" name="ppr"             style="display:none;" id="id_ppr">
+					<input type="text" name="color"           style="display:none;" id="id_color">
+					<input type="text" name="content"         style="display:none;" id="id_content">
+				</div>
+				<input type="submit" id="comment_submit" style="display:none;">
+
+				<div class="pub_ext clearfix">
+					<a onclick="clickSubmit();" class="fr pub_submit"></a>
+				</div>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
+{%endblock%}
