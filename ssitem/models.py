@@ -6,10 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 
 from adminTest.sscomment.models import Qcomment
-from adminTest.settings import MEDIA_ROOT, MEDIA_SITE_ROOT
+from adminTest.settings import MEDIA_ROOT
 from adminTest.common import shiselogo, generate_shiselogoori_name
-
-from adminTest.ssbrand.models import Brand
 
 import os
 import uuid
@@ -19,7 +17,7 @@ import datetime
 class Shise(models.Model):
 	#妆品信息
 	name 		= models.CharField(max_length=60, verbose_name='彩妆名')
-	brand 		= models.ForeignKey(Brand, related_name='shise_brand_set', verbose_name='品牌信息')
+	brand 		= models.CharField(max_length=60, verbose_name='品牌', blank=True)
 	spec 		= models.CharField(max_length=60, verbose_name='规格', blank=True)
 	category	= models.CharField(max_length=60, verbose_name='分类', blank=True)
 	barcode		= models.CharField(max_length=60, verbose_name='条形码', blank=True)
@@ -31,8 +29,6 @@ class Shise(models.Model):
 	logoori 	= models.ImageField('logo原图',	upload_to=generate_shiselogoori_name, 	blank=True)
 	logo300 	= models.ImageField('logo大图',	upload_to='shiselogo', 	blank=True)
 	logo110 	= models.ImageField('logo小图',	upload_to='shiselogo', 	blank=True)
-	logo300_url = models.CharField(max_length=60, verbose_name='300url',blank=True)
-	logo110_url = models.CharField(max_length=60, verbose_name='300url',blank=True)
 
 	#创建者
 	author 		= models.ForeignKey(User, related_name='shise_author_set', verbose_name='创建者')
@@ -71,7 +67,6 @@ class Shise(models.Model):
 		t1_path = os.path.join(MEDIA_ROOT, 'shiselogo/' + base + ext)
 		t1.save(t1_path, quality=100)
 		self.logo300= ImageFieldFile(self, self.logo300, 'shiselogo/' + base + ext)
-		self.logo300_url = MEDIA_SITE_ROOT + 'shiselogo/' + base + ext;
 
 		#生成 110x110 logo小缩略图
 		base = "110_%d_%s_%s" %(int(self.id), uuid.uuid4().hex[:8], oribase)
@@ -79,7 +74,6 @@ class Shise(models.Model):
 		t1_path = os.path.join(MEDIA_ROOT, 'shiselogo/' + base + ext)
 		t1.save(t1_path, quality=100)
 		self.logo110= ImageFieldFile(self, self.logo110, 'shiselogo/' + base + ext)
-		self.logo110_url = MEDIA_SITE_ROOT + 'shiselogo/' + base + ext;
 
 		self.save()
 
