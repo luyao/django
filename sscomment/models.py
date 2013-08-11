@@ -8,6 +8,9 @@ from django.contrib.contenttypes import generic
 
 from adminTest.common import shiselogo, generate_shiselogoori_name
 from adminTest.sscomment.managers import QcommentManager
+from adminTest.settings import MEDIA_ROOT, MEDIA_SITE_ROOT
+
+import os
 
 #一个 ContentType 对象表示django中安装的一个 model
 # ContentType 有3个成员：
@@ -44,7 +47,7 @@ class Qcomment(models.Model):
 	is_public   	= models.BooleanField('是否公开',  default=True)
 	lights 		= models.IntegerField('点亮数',    default=0)
 	lighters	= models.ManyToManyField(User, related_name='qcomment_lighters_set', verbose_name='点亮者', blank=True)
-	imgs        = models.ImageField('评论图片',	upload_to=generate_shiselogoori_name, 	blank=True)
+	imgs        = models.ImageField('评论图片',	upload_to=MEDIA_ROOT + '/usr_upload/',blank=True, null=True)
 
 	absorption    = models.IntegerField('吸收度',    default=0)
 	durability    = models.IntegerField('持久度',    default=0) 
@@ -65,6 +68,12 @@ class Qcomment(models.Model):
 	def get_authorlogo_url(self):
 		return u'%s' %(self.author.get_profile().logo.url)
 
+	def get_img_url(self):
+		path = self.imgs.url.split('/')
+		return u'%s' %( MEDIA_SITE_ROOT + 'usr_upload/' + path[-1]) 
+		#return u'%s' %( MEDIA_SITE_ROOT + 'usr_upload/' + os.path.basename(self.imgs.url)) 
+
 	#判断user是否点亮过这个评论
 	def has_lighter(self, user):
 		return True if user in self.lighters.all() else False
+

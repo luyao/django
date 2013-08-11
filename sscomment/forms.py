@@ -17,13 +17,13 @@ from adminTest.sscomment.models import Qcomment
 		
 #attrs_dict = {'class':'formitem'}
 class QcommentForm(forms.Form):
-	#content = forms.CharField(widget=forms.Textarea, error_messages={'required':'空评论？'})
 	content  = forms.CharField(required=False)
 	absorption = forms.IntegerField(required=False)	
 	durability = forms.IntegerField(required=False)	
 	anti_blooming = forms.IntegerField(required=False)	
 	ppr = forms.IntegerField(required=False)	
 	color = forms.IntegerField(required=False)	
+	imgs = forms.ImageField(required=False)
 
 	#TODO 评论敏感词、脏话过滤
 	#def clean_content(self):
@@ -35,14 +35,7 @@ class QcommentForm(forms.Form):
 	#	return c
 	#def clean_content(self):
 	#	return self.cleaned_data.get('content', '')
-	#def GetImg(self, request):
-	#	file = request.FILES.get('file', None)
-	#	if file:
-	#		data = file['content']
-	#		f = StringIO.StringIO(data)
-	#		self.imgs = Image.open(f)
-	#		return self.imgs
-	#
+	
 	def GetComment(self):
 		form = Qcomment()
 		form.content       = self.cleaned_data.get('content', '')
@@ -51,6 +44,6 @@ class QcommentForm(forms.Form):
 		form.anti_blooming = self.cleaned_data.get('anti_blooming', 0)
 		form.ppr           = self.cleaned_data.get('ppr', 0)
 		form.color         = self.cleaned_data.get('color', 0)
-		#form.imgs          = self.GetImg(request)
+		form.imgs          = self.cleaned_data.get('imgs');
 		return form
 

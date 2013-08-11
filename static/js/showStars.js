@@ -23,7 +23,7 @@ function clickSubmit(){
 	_setSingleValue("ppr")
 	_setSingleValue("anti_blooming")
 	_setSingleValue("absorption")
-	_getTextAreaValue();
+	//_getTextAreaValue();
 	var submitObj = document.getElementById("comment_submit");
 	return submitObj.click();
 }

@@ -54,6 +54,23 @@ def getUserSkinType(scoreList):
 		list.append(cate)
 	return list
 
+def getScoreList(qcommentall):
+	list = [0.0, 0.0, 0.0, 0.0, 0.0]
+	index = 0
+	for comment in qcommentall:
+		list[0] += comment.absorption
+		list[1] += comment.durability
+		list[2] += comment.anti_blooming
+		list[3] += comment.ppr
+		list[4] += comment.color
+		index += 1
+	if index == 0:
+		return list
+
+	for i in range(0, len(list)):
+		list[i] /= index
+	
+	return list
 
 def shiseview(request, sid, form_class=QcommentForm, template_name="shise/item.html"):
 	item = get_object_or_404(Shise, id=sid)
@@ -63,41 +80,31 @@ def shiseview(request, sid, form_class=QcommentForm, template_name="shise/item.h
 	except:
 		creator.username="default"
 
-	scoreList = [5.0, 4.8, 3.2, 1.7, 0.5]
+	qcommentall   = item.qcomments.all()
+	qcommentcount = qcommentall.count()
+	scoreList = getScoreList(qcommentall)
 	cntList   = [3.7, 4.8, 5, 2, 1.0]
 	average_score = averageScore()
 	average_score.total = round( sum(scoreList)/len(scoreList), 1)
 	average_score.cate  = getCommentCate(scoreList)
 	average_score.type  = getUserSkinType(cntList)
 
-	item_stick = Shise.objects.all()
-	qcommentall   = item.qcomments.all()
-	qcommentcount = qcommentall.count()
-	qcommentall  = qcommentall[:5]
-
 	#for items in the same brand
 	items_in_same_brand = Shise.objects.filter(brand=item.brand)
 	if request.method == 'POST':
 		successurl = '#in'
 		#处理添加评论请求
-		form = form_class(request.POST)
+		form = form_class(request.POST, request.FILES)
 		if form.is_valid():
 			content = form.cleaned_data.get("content",'')
 			try:
 				qcom = form.GetComment()
 			except:
 				qcom = Qcomment(content=content, lights=10)
-			#qcom = Qcomment(comment=content, has_quote=False, is_public=True, lights=0)
+
 			qcom.author = request.user
 			qcom.content_object = item 
-			##qcomlist = Qcomment.objects.filter(shise=item, author=request.user)
-			#for oldqcom in qcomlist:
-			#	if qcom.comment == oldqcom.comment:
-			#		qcom = oldqcom
-			#		successurl = '%s#qcomment-area' %(item.get_absolute_url())
-			#		return HttpResponseRedirect(successurl)
 			qcom.save()
-			return HttpResponseRedirect(successurl)
 		else:
 			successurl = '%s#postfailed' %(item.get_absolute_url())
 			return HttpResponseRedirect(successurl)
@@ -107,7 +114,6 @@ def shiseview(request, sid, form_class=QcommentForm, template_name="shise/item.h
 	context = RequestContext(request)
 	return render_to_response(template_name, 
 		{'item':item,
-		 'item_stick':item_stick,
 		 'items_in_same_brand':items_in_same_brand,
 		 'top_offset':1800,
 		 'average_score':average_score,

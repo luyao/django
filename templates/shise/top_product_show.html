@@ -1,19 +1,21 @@
-<div class="top_product_show beautiful_div_block fl">
+<div class="top_product_show beautiful_div_block fl width645">
 	<div class="sticky_title ">最热试用</div>
-	{% for item in item_stick %}
-	{% if forloop.first %}
-	<div class="grid_3 sticky_post ml">
-	{% else %}
-		{% if forloop.last %}
-		<div class="grid_3 sticky_post mr">
-		{% else%}
-			<div class="grid_3 sticky_post">
-		{% endif %}
-	{%endif%}
-		<a href="/shise/{{ item.id }}" title="{{ item.name}}">
-			<img src="{{ item.logo110_url}}" alt="{{ item.name}}" class="thumb" style="opacity: 0.9999999602635717;">
-		</a>
-		<a href="/shise/{{ item.id}}" title="{{item.name}}" class="top_product_a">{{item.name}}</a>
-	</div>
+	{% for item in qcommentlist%}
+		{% if forloop.first %}
+		<div class="grid_3 sticky_post ml">
+		{% else %}
+			{% if forloop.last %}
+			<div class="grid_3 sticky_post mr">
+			{% else%}
+				<div class="grid_3 sticky_post">
+			{% endif %}
+		{%endif%}
+			<a href="/shise/{{ item.id }}">
+				<img src="{{ item.get_img_url}}"  class="thumb" style="opacity: 0.9999999602635717;">
+			</a>
+			<a href="/shise/{{ item.id}}" class="top_product_a">{{item.content}}</a>
+		</div>
+	{%empty%}
+	<h1 class=no_girl_comment>还没有妹子评价</h1>
 	{%endfor%}
 </div>

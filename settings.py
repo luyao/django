@@ -75,6 +75,7 @@ USE_L10N = True
 #MEDIA_ROOT = ''
 MEDIA_ROOT = os.path.join(WORK_DIR, 'static/img/').replace('\\','/')
 MEDIA_SITE_ROOT = '/static/img/'
+MEDIA_ROOT_ = 'static/img/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
